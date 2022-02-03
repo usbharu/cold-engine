@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EngineConfig>
+  <Runtime>
+    <DefaultDialogSize axis="x">250</DefaultDialogSize>
+    <DefaultDialogSize axis="y">150</DefaultDialogSize>
+    <DefaultFPS>10</DefaultFPS>
+    <DefaultTitle>Cold Engine</DefaultTitle>
+    <DefaultWindowResize>false</DefaultWindowResize>
+    <DefaultWindowSize axis="y">480</DefaultWindowSize>
+    <DefaultWindowSize axis="x">640</DefaultWindowSize>
+    <FPSLowerLimit>1</FPSLowerLimit>
+    <FPSUpperLimit>200</FPSUpperLimit>
+  </Runtime>
+  <Version>0.1</Version>
+</EngineConfig>

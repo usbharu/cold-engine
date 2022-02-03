@@ -1,4 +1,4 @@
-package io.github.usbharu.coldengin.engin;
+package io.github.usbharu.coldengin.engine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,7 +162,7 @@ public class EngineConfigReader extends DefaultHandler {
   public void characters(char[] ch, int start, int length) throws SAXException {
     String str = new String(ch, start, length);
     if (ColdEngineUtilities.isBoolean(str)) {
-      bool = ch[0] == 't';
+      bool = str.charAt(0) == 't';
       return;
     }
     if (ColdEngineUtilities.isDigit(str)) {

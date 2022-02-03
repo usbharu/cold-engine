@@ -1,4 +1,4 @@
-package io.github.usbharu.coldengin.engin;
+package io.github.usbharu.coldengin.engine;
 
 public interface IGameController {
 

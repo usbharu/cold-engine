@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="cold-engine">
+    <output-path>$PROJECT_DIR$/out/artifacts/cold_engine</output-path>
+    <root id="archive" name="cold-engine.jar">
+      <element id="module-output" name="cold-engine" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

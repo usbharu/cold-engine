@@ -1,4 +1,4 @@
-package io.github.usbharu.coldengin.engin;
+package io.github.usbharu.coldengin.engine;
 
 import java.awt.Dimension;
 
@@ -31,7 +31,7 @@ public class EngineConfigRapper {
     ColdEngine.getInstance().setDefaultTitle(title);
   }
 
-  public static void setDefaultDialogSizeX(int defaultDialogSizeX){
+  public static void setDefaultDialogSizeX(int defaultDialogSizeX) {
     EngineConfigRapper.defaultDialogSizeX = defaultDialogSizeX;
   }
 

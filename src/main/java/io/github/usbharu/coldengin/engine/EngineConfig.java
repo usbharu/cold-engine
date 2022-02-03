@@ -1,9 +1,7 @@
-package io.github.usbharu.coldengin.engin;
+package io.github.usbharu.coldengin.engine;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -24,11 +22,11 @@ public class EngineConfig {
 
   public void loadEngineConfig() {
     try {
-      File config = new File(new URI(getClass().getResource("/EngineConfig.xml").toString()));
+      InputStream config = getClass().getResourceAsStream("/EngineConfig.xml");
       saxParserFactory = SAXParserFactory.newInstance();
       saxParser = saxParserFactory.newSAXParser();
       saxParser.parse(config, new EngineConfigReader());
-    } catch (URISyntaxException | ParserConfigurationException | IOException | SAXException e) {
+    } catch (ParserConfigurationException | IOException | SAXException e) {
       e.printStackTrace();
     }
   }

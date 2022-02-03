@@ -1,4 +1,4 @@
-package io.github.usbharu.coldengin.engin;
+package io.github.usbharu.coldengin.engine;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,7 +16,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-public class Dialog extends JOptionPane{
+public class Dialog extends JOptionPane {
 
   public static Dimension defaultDialogSize = new Dimension(100, 80);
 

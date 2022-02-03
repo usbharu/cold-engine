@@ -1,6 +1,6 @@
-package io.github.usbharu.coldengin.engin;
+package io.github.usbharu.coldengin.engine;
 
-import io.github.usbharu.coldengin.engin.exception.IsNotUniqueSceneNameException;
+import io.github.usbharu.coldengin.engine.exception.IsNotUniqueSceneNameException;
 import java.util.ArrayList;
 import java.util.List;
 

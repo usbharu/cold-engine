@@ -1,4 +1,7 @@
-package io.github.usbharu.coldengin.engin;
+package io.github.usbharu.coldengin.engine;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FrameUpdateManager {
 
@@ -12,6 +15,7 @@ public class FrameUpdateManager {
   private long newTime;
   private long sleepTime;
 
+  private Logger logger = LogManager.getLogger(FrameUpdateManager.class);
   private FrameUpdateManager() {
   }
 
@@ -20,6 +24,9 @@ public class FrameUpdateManager {
   }
 
   public void start() {
+
+    logger.info("FrameUpdate Started");
+
     Thread thread = new Thread(new FrameUpdateJob());
     thread.start();
 
@@ -28,6 +35,7 @@ public class FrameUpdateManager {
     newTime = System.currentTimeMillis() << 16;
 
     while (true) {
+      logger.trace("FixedUpdate loop");
       oldTime = newTime;
       update();
       ColdEngine.getInstance().repaint();
@@ -48,6 +56,7 @@ public class FrameUpdateManager {
   }
 
   private void update() {
+    logger.trace("current FPS: {}", getCurrentFPS());
     SceneManager.getInstance().fixedUpdate();
   }
 
@@ -65,17 +74,20 @@ public class FrameUpdateManager {
 
   public void setFPS(int fps) {
     this.fps = fps;
+    logger.debug("FPS set to {}", fps);
   }
 
   public void setFpsLowerLimit(int fpsLowerLimit) {
     this.fpsLowerLimit = fpsLowerLimit;
+    logger.debug("FPS lower limit set to {}", fpsLowerLimit);
   }
 
   public void setFpsUpperLimit(int fpsUpperLimit) {
     this.fpsUpperLimit = fpsUpperLimit;
+    logger.debug("FPS upper limit set to {}", fpsUpperLimit);
   }
 
-  private static class FrameUpdateJob implements Runnable {
+  private class FrameUpdateJob implements Runnable {
 
     /**
      * When an object implementing interface <code>Runnable</code> is used to create a thread,
@@ -90,7 +102,9 @@ public class FrameUpdateManager {
      */
     @Override
     public void run() {
+      logger.debug("Update Thread Start");
       while (true) {
+        logger.trace("Update Loop");
         try {
           SceneManager.getInstance().update();
           SceneManager.getInstance().lateUpdate();
