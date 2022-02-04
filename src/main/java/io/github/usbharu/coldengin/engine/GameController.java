@@ -9,7 +9,6 @@ public abstract class GameController implements IGameController, GettableView {
 
   @Override
   public synchronized void init() {
-    System.out.println("init");
     view = new JPanel();
   }
 

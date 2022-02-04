@@ -10,11 +10,17 @@
         <pattern>${format1}</pattern>
       </PatternLayout>
     </Console>
+    <File name = "fileAppender" fileName = "log4j2.log" append="true">
+      <PatternLayout>
+        <pattern>${format1}</pattern>
+      </PatternLayout>
+    </File>
   </Appenders>
 
   <Loggers>
-    <Root level="trace">
+    <Root level="info">
       <AppenderRef ref="Console" />
+      <AppenderRef ref="fileAppender" />
     </Root>
   </Loggers>
 </Configuration>

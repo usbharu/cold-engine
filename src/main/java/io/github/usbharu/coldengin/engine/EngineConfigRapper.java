@@ -1,6 +1,8 @@
 package io.github.usbharu.coldengin.engine;
 
 import java.awt.Dimension;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class EngineConfigRapper {
 
@@ -8,6 +10,8 @@ public class EngineConfigRapper {
   static int defaultWindowSizeY = 0;
   static int defaultDialogSizeX = 0;
   static int defaultDialogSizeY = 0;
+
+  private static final Logger logger = LogManager.getLogger(EngineConfigRapper.class);
 
   public static void setFPSLowerLimit(int fpsLowerLimit) {
     FrameUpdateManager.getInstance().setFpsLowerLimit(fpsLowerLimit);
@@ -23,10 +27,11 @@ public class EngineConfigRapper {
 
   public static void setDefaultTitle(String title) {
     if (title == null) {
-      System.out.println("title is null!!");
+      logger.warn("setDefaultTitle : title is null");
     }
     if (ColdEngine.getInstance() == null) {
-      System.out.println("Cold Engine is null!!");
+      logger.warn("ColdEngine is null!!");
+      return;
     }
     ColdEngine.getInstance().setDefaultTitle(title);
   }
@@ -64,6 +69,7 @@ public class EngineConfigRapper {
   public static void setDefaultWindowSize() {
     if (defaultWindowSizeY != 0 && defaultWindowSizeX != 0) {
       setDefaultWindowSize(new Dimension(defaultWindowSizeX, defaultWindowSizeY));
+      logger.debug("setDefaultWindowSize :{} , {}", defaultWindowSizeX, defaultWindowSizeY);
     }
   }
 

@@ -3,6 +3,8 @@ package io.github.usbharu.coldengin.engine;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class SceneManager {
 
@@ -10,6 +12,8 @@ public class SceneManager {
   private final List<Scene> sceneList = new ArrayList<>();
   private final Scene emptyScene = new Scene();
   private int loadedSceneIndex = -1;
+
+  private final Logger logger = LogManager.getLogger(SceneManager.class);
 
   private SceneManager() {
 
@@ -41,10 +45,12 @@ public class SceneManager {
 
   public void addScene(Scene scene) {
     sceneList.add(scene);
+    logger.debug("Scene added: {}", scene.getUniqueSceneName());
   }
 
   public void removeScene(Scene scene) {
     sceneList.remove(scene);
+    logger.debug("Scene removed: {}", scene.getUniqueSceneName());
   }
 
   public void removeScene(String uniqueSceneName) {
@@ -71,6 +77,7 @@ public class SceneManager {
         destroyed();
       }
       loadedSceneIndex = index;
+      logger.debug("Scene loaded: {}", sceneList.get(index).getUniqueSceneName());
       setup();
     } else {
       throw new ArrayIndexOutOfBoundsException(index);
@@ -83,6 +90,7 @@ public class SceneManager {
       if (scene.getUniqueSceneName().equals(name)) {
         destroyed();
         loadedSceneIndex = i;
+        logger.debug("Scene loaded: {}", scene.getUniqueSceneName());
         setup();
       }
     }
@@ -92,10 +100,12 @@ public class SceneManager {
     if (loadedSceneIndex >= 0 && loadedSceneIndex < sceneList.size()) {
       return sceneList.get(loadedSceneIndex);
     }
+    logger.debug("Scene not found: {}", loadedSceneIndex);
     return emptyScene;
   }
 
   void setView(JComponent view) {
     ColdEngine.getInstance().setView(view);
+    logger.debug("View set: {}", view.getClass().getName());
   }
 }

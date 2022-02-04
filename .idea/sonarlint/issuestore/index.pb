@@ -1,0 +1,21 @@
+
+O
+.idea/artifacts/cold_engine.xml,c\d\cd407c3125a12289c0b2d1ed65ecaef6fa3609af
+d
+4.idea/libraries/Maven__com_beust_jcommander_1_78.xml,7\c\7c085256e72a556fc055a18cc1fcf022d7d71010
+p
+@.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_1.xml,7\a\7a6148410970e4833e05bdb53f0b461063d00c69
+e
+5.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_32.xml,9\7\97fc3dd3709b5aa48a6eceeef8ff7d237cdd0b19
+`
+0.idea/libraries/Maven__org_testng_testng_7_5.xml,7\f\7fbbb2f899c1e85c622e2a25eac610b00700f7b1
+c
+3.idea/libraries/Maven__org_webjars_jquery_3_5_1.xml,6\1\619089839b64142bda97fd048af92103fbbcc768
+}
+Msrc/test/java/io/github/usbharu/coldengin/engine/ColdEngineUtilitiesTest.java,e\4\e486091a29cc86e723a4bdae8d418fa1dcf4902d
+ç
+]src/main/java/io/github/usbharu/coldengin/engine/exception/IsNotUniqueSceneNameException.java,2\7\27cb4736362b812148ee1ca50e5d17e9678ef2d2
+x
+Hsrc/main/java/io/github/usbharu/coldengin/engine/FrameUpdateManager.java,8\9\89038e18ac10299aaf9c36307ca41bf107ac54c2
+u
+Esrc/main/java/io/github/usbharu/coldengin/engine/IGameController.java,3\5\35c93f07d06073ca1ddccdc8611020d04d8b703d

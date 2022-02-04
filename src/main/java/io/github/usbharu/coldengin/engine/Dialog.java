@@ -15,10 +15,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Dialog extends JOptionPane {
 
-  public static Dimension defaultDialogSize = new Dimension(100, 80);
+  private final static Logger logger = LogManager.getLogger(Dialog.class);
+  private static Dimension defaultDialogSize = new Dimension(100, 80);
 
   public static int showConfirmDialog(Object message) {
     return showConfirmDialog(message, UIManager.getString("OptionPane.titleText"),
@@ -37,6 +40,7 @@ public class Dialog extends JOptionPane {
   public static int showConfirmDialog(Object message, String title, int optionStyle,
       int messageType,
       Icon icon) {
+    logger.debug("showConfirmDialog message={} title={} optionStyle={} messageType={} icon={}",message, title, optionStyle, messageType, icon);
     return JOptionPane.showConfirmDialog(ColdEngine.getInstance().getFrame(), message, title,
         optionStyle, messageType, icon);
   }
@@ -59,6 +63,7 @@ public class Dialog extends JOptionPane {
 
   public static Object showInputDialog(Object message, String title, int messageType, Icon icon,
       Object[] selectionValues, Object initialSelectionValue) {
+    logger.debug("showInputDialog message={} title={} messageType={} icon={} selectionValues={} initialSelectionValue={}",message, title, messageType, icon, selectionValues, initialSelectionValue);
     return JOptionPane.showInputDialog(ColdEngine.getInstance().getFrame(), message, title,
         messageType, icon, selectionValues, initialSelectionValue);
   }
@@ -81,12 +86,14 @@ public class Dialog extends JOptionPane {
   }
 
   public static void showMessageDialog(Object message, String title, int messageType, Icon icon) {
+    logger.debug("showMessageDialog message={} title={} messageType={} icon={}",message, title, messageType, icon);
     JOptionPane.showMessageDialog(ColdEngine.getInstance().getFrame(), message, title, messageType,
         icon);
   }
 
   public static int showOptionDialog(Object message, String title, int optionType, int messageType,
       Icon icon, Object[] options, Object initialValue) {
+    logger.debug("showOptionDialog message={} title={} optionType={} messageType={} icon={} options={} initialValue={}",message, title, optionType, messageType, icon, options, initialValue);
     return JOptionPane.showOptionDialog(ColdEngine.getInstance().getFrame(), message, title,
         optionType,
         messageType, icon, options, initialValue);
@@ -99,23 +106,26 @@ public class Dialog extends JOptionPane {
     } catch (NoSuchMethodException e) {
       e.printStackTrace();
     }
-    method.setAccessible(true);
-    try {
-      return String.valueOf(method.invoke(null, key, c));
-    } catch (IllegalAccessException e) {
-      e.printStackTrace();
-    } catch (InvocationTargetException e) {
-      e.printStackTrace();
+    if (method != null) {
+      method.setAccessible(true);
+      try {
+        return String.valueOf(method.invoke(null, key, c));
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      } catch (InvocationTargetException e) {
+        e.printStackTrace();
+      }
     }
     return null;
   }
 
   public static void setDefaultDialogSize(Dimension defaultDialogSize) {
-    System.out.println("setDefaultDialogSize");
+    logger.debug("setDefaultDialogSize defaultDialogSize={}",defaultDialogSize);
     Dialog.defaultDialogSize = defaultDialogSize;
   }
 
   public static void showMessageInGameDialog(Object message, String title) {
+    logger.debug("showMessageInGameDialog message={} title={}",message, title);
     JPopupMenu popupMenu = createInGameDialog(title);
 
     JLabel messageLabel = new JLabel(message.toString());

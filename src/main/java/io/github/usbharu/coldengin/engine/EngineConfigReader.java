@@ -2,6 +2,8 @@ package io.github.usbharu.coldengin.engine;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
@@ -10,6 +12,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class EngineConfigReader extends DefaultHandler {
 
   private final List<String> attribute = new ArrayList<>();
+  private final Logger logger = LogManager.getLogger(EngineConfigReader.class);
   private boolean bool = false;
   private int integer = 0;
   private String string = "";
@@ -91,34 +94,41 @@ public class EngineConfigReader extends DefaultHandler {
    */
   @Override
   public void endElement(String uri, String localName, String qName) throws SAXException {
-    debug_AllVariablesPrint();
     switch (qName) {
       case "Version":
+        logger.debug("Version:{}", floatNumber);
         if (floatNumber < 0.1f) {
           throw new IllegalArgumentException("The EngineConfig.xml version is wrong.");
         }
         break;
       case "Runtime":
+        logger.debug("Runtime Config");
         break;
       case "FPSLowerLimit":
         EngineConfigRapper.setFPSLowerLimit(integer);
+        logger.debug("FPSLowerLimit:{}", floatNumber);
         break;
       case "FPSUpperLimit":
         EngineConfigRapper.setFPSUpperLimit(integer);
+        logger.debug("FPSUpperLimit:{}", floatNumber);
         break;
       case "DefaultFPS":
         EngineConfigRapper.setFPS(integer);
+        logger.debug("DefaultFPS:{}", integer);
         break;
       case "DefaultTitle":
         EngineConfigRapper.setDefaultTitle(string);
+        logger.debug("DefaultTitle:{}", string);
         break;
       case "DefaultWindowSize":
         if (attribute.get(0).equals("x")) {
           EngineConfigRapper.setDefaultWindowSizeX(integer);
+          logger.debug("DefaultWindowSize:{}", integer);
           EngineConfigRapper.setDefaultWindowSize();
           attribute.remove(0);
         } else if (attribute.get(0).equals("y")) {
           EngineConfigRapper.setDefaultWindowSizeY(integer);
+          logger.debug("DefaultWindowSize:{}", integer);
           EngineConfigRapper.setDefaultWindowSize();
           attribute.remove(0);
         }
@@ -136,9 +146,10 @@ public class EngineConfigReader extends DefaultHandler {
         break;
       case "DefaultWindowResize":
         EngineConfigRapper.setDefaultWindowResize(bool);
+        logger.debug("DefaultWindowResize:{}", bool);
         break;
       case "EngineConfig":
-        System.out.println("Config complete!");
+        logger.debug("Config End");
         break;
       default:
         throw new IllegalStateException("Unexpected value: " + qName);
@@ -184,11 +195,11 @@ public class EngineConfigReader extends DefaultHandler {
   }
 
   private void debug_AllVariablesPrint() {
-    System.out.println("bool = " + bool);
-    System.out.println("integer = " + integer);
-    System.out.println("longNumber = " + longNumber);
-    System.out.println("floatNumber = " + floatNumber);
-    System.out.println("doubleNumber = " + doubleNumber);
-    System.out.println("string = " + string);
+    logger.debug("bool: {}", bool);
+    logger.debug("integer: {}", integer);
+    logger.debug("longNumber: {}", longNumber);
+    logger.debug("floatNumber: {}", floatNumber);
+    logger.debug("doubleNumber: {}", doubleNumber);
+    logger.debug("string: {}", string);
   }
 }
