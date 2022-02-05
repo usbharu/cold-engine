@@ -13,6 +13,19 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/3/f" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/7/6" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/8/0" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/8/d" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/9/2" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/9/4" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/9/6" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/c/5" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/1" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/4" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/5" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/a" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/d" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

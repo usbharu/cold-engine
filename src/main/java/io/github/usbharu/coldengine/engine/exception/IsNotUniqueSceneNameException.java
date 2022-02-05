@@ -1,4 +1,4 @@
-package io.github.usbharu.coldengin.engine.exception;
+package io.github.usbharu.coldengine.engine.exception;
 
 import java.security.PrivilegedActionException;
 

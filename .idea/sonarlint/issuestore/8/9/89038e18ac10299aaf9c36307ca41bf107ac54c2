@@ -1,22 +1,0 @@
-
-o
-java:S1450	"TRemove the "error" field and declare it as a local variable in the relevant methods.(èĞ”²ûÿÿÿÿ
-r
-java:S1450"\Remove the "fpsLowerLimit" field and declare it as a local variable in the relevant methods.(¼ í§
-w
-java:S1450"\Remove the "fpsUpperLimit" field and declare it as a local variable in the relevant methods.(ÅŒÃşÿÿÿÿ
-t
-java:S1450"YRemove the "idealSleep" field and declare it as a local variable in the relevant methods.(ƒà»®úÿÿÿÿ
-q
-java:S1450"VRemove the "newTime" field and declare it as a local variable in the relevant methods.(§¸şûÿÿÿÿ
-q
-java:S1450"VRemove the "oldTime" field and declare it as a local variable in the relevant methods.(ÅÏ˜³üÿÿÿÿ
-t
-java:S21422"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
-C	java:S108B")Either remove or fill this block of code.(´ƒÓıÿÿÿÿ
-t
-java:S2142t"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
-G
-java:S1068"1Remove this unused "fpsLowerLimit" private field.(¼ í§
-L
-java:S1068"1Remove this unused "fpsUpperLimit" private field.(ÅŒÃşÿÿÿÿ

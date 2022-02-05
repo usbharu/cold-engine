@@ -1,4 +1,4 @@
-package io.github.usbharu.coldengin.engine;
+package io.github.usbharu.coldengine.engine;
 
 /**
  * updateなどを実行できるゲームコントローラーです。
