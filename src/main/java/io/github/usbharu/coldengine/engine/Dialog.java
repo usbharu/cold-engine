@@ -315,7 +315,9 @@ public class Dialog extends JOptionPane {
     for (int i = 0; i < options.length; i++) {
       buttons[i] = new JButton(options[i].toString());
       buttons[i].addActionListener(e -> popupMenu.setVisible(false));
-      buttons[i].addActionListener(listeners[i]);
+      if (listeners != null && listeners.length > i) {
+        buttons[i].addActionListener(listeners[i]);
+      }
       buttonPanel.add(buttons[i]);
     }
 
