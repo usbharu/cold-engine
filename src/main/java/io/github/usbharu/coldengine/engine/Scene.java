@@ -7,10 +7,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * {@code ColdEngine}のシーンです。
- * シーンはゲームの一つの場面であり、場面ごとにシーンを用意します。
- * シーンにはいくつかの{@code GameController}を登録することができシーン中で切り替えることができます。
- * シーンは{@code SceneManager}に登録することで使用することができます。
+ * {@code ColdEngine}のシーンです。 シーンはゲームの一つの場面であり、場面ごとにシーンを用意します。 シーンにはいくつかの{@code
+ * GameController}を登録することができシーン中で切り替えることができます。 シーンは{@code SceneManager}に登録することで使用することができます。
+ *
+ * @author usbharu
+ * @version 0.0.2
+ * @since 0.0.1
  */
 public class Scene {
 

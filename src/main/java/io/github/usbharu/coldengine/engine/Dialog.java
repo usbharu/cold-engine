@@ -29,9 +29,8 @@ import org.apache.logging.log4j.Logger;
  * 基本的には{@link JOptionPane}と使用方法は同じですが、親を指定することができなくなっています。<br> なお、{@link
  * JOptionPane}を継承しているため、{@link JOptionPane}のメソッドを使用することができますが、推奨されません。<br>
  *
- *
  * @author usbharu
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class Dialog extends JOptionPane {

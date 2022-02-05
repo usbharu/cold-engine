@@ -5,6 +5,10 @@ import javax.swing.JPanel;
 
 /**
  * {@code ColdEngine}の{@code Scene}に登録される、シーン開始時に読み込まれるクラスです。 ゲームの処理の大部分を担います。
+ *
+ * @author usbharu
+ * @version 0.0.2
+ * @since 0.0.1
  */
 public abstract class GameController implements IGameController, GettableView {
 

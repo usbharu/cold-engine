@@ -7,8 +7,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * {@code ColdEngine} のシーン管理を行うクラスです。
- * {@link Scene} クラスを管理します。
+ * {@code ColdEngine} のシーン管理を行うクラスです。 {@link Scene} クラスを管理します。
+ *
+ * @author usbharu
+ * @version 0.0.2
+ * @since 0.0.1
  */
 public class SceneManager {
 

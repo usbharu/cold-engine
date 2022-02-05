@@ -5,9 +5,10 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * {@code ColdEngine}のフレーム更新処理を管理するクラス。
+ *
  * @author usbharu
+ * @version 0.0.2
  * @since 0.0.1
- * @version 0.0.1
  */
 public class FrameUpdateManager {
 

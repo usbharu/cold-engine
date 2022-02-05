@@ -2,6 +2,10 @@ package io.github.usbharu.coldengine.engine;
 
 /**
  * {@code ColdEngineUtilities} is a utility class for {@link ColdEngine}.
+ *
+ * @author usbharu
+ * @version 0.0.2
+ * @since 0.0.1
  */
 public class ColdEngineUtilities {
 

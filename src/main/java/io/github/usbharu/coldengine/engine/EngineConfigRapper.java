@@ -6,9 +6,10 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * {@code EngineConfigRapper}のラッパークラスです。今後APIが変更された時に変更が発生するクラスを少なくするためのクラスです。
+ *
  * @author usbharu
+ * @version 0.0.2
  * @since 0.0.1
- * @version 0.0.1
  */
 public class EngineConfigRapper {
 

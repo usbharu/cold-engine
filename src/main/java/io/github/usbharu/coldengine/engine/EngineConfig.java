@@ -11,6 +11,10 @@ import org.xml.sax.SAXException;
 
 /**
  * The type Engine config.
+ *
+ * @author usbharu
+ * @version 0.0.2
+ * @since 0.0.1
  */
 public class EngineConfig {
 

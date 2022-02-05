@@ -11,6 +11,10 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * {@code ColdEngine}の設定ファイルを読み込み、適用します。
+ *
+ * @author usbharu
+ * @version 0.0.2
+ * @since 0.0.1
  */
 public class EngineConfigReader extends DefaultHandler {
 
