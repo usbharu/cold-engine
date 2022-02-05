@@ -7,7 +7,7 @@ import javax.swing.JComponent;
  */
 public abstract class GameController implements IGameController, GettableView {
 
-  private JComponent view;
+  protected JComponent view;
 
   /**
    * 初期化時に呼ばれます
