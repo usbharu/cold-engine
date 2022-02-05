@@ -6,6 +6,12 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * {@code ColdEngine}のシーンです。
+ * シーンはゲームの一つの場面であり、場面ごとにシーンを用意します。
+ * シーンにはいくつかの{@code GameController}を登録することができシーン中で切り替えることができます。
+ * シーンは{@code SceneManager}に登録することで使用することができます。
+ */
 public class Scene {
 
   private final List<GameController> coldGameControllerList = new ArrayList<>();
@@ -14,6 +20,9 @@ public class Scene {
 
   private final Logger logger = LogManager.getLogger(Scene.class);
 
+  /**
+   * Instantiates a new Scene.
+   */
   public Scene() {
     init();
     logger.debug("Scene created.");
@@ -26,6 +35,9 @@ public class Scene {
     logger.debug("Scene init.");
   }
 
+  /**
+   * Sets .
+   */
   void setup() {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.setup();
@@ -40,6 +52,9 @@ public class Scene {
     }
   }
 
+  /**
+   * Update.
+   */
   void update() {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.update();
@@ -47,6 +62,9 @@ public class Scene {
     logger.debug("Scene update.");
   }
 
+  /**
+   * Fixed update.
+   */
   void fixedUpdate() {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.fixedUpdate();
@@ -54,6 +72,9 @@ public class Scene {
     logger.debug("Scene fixedUpdate.");
   }
 
+  /**
+   * Late update.
+   */
   void lateUpdate() {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.lateUpdate();
@@ -61,6 +82,9 @@ public class Scene {
     logger.debug("Scene lateUpdate.");
   }
 
+  /**
+   * Destroyed.
+   */
   void destroyed() {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.destroyed();
@@ -68,22 +92,42 @@ public class Scene {
     logger.debug("Scene destroyed.");
   }
 
+  /**
+   * Add.
+   *
+   * @param gameController the game controller
+   */
   public void add(GameController gameController) {
     gameController.init();
     coldGameControllerList.add(gameController);
     logger.debug("Add GameController: {}", gameController.getClass().getSimpleName());
   }
 
+  /**
+   * Remove.
+   *
+   * @param gameController the game controller
+   */
   public void remove(GameController gameController) {
     gameController.destroyed();
     coldGameControllerList.remove(gameController);
     logger.debug("Remove GameController: {}", gameController.getClass().getSimpleName());
   }
 
+  /**
+   * Gets unique scene name.
+   *
+   * @return the unique scene name
+   */
   public String getUniqueSceneName() {
     return uniqueSceneName;
   }
 
+  /**
+   * Sets unique scene name.
+   *
+   * @param sceneName the scene name
+   */
   public void setUniqueSceneName(String sceneName) {
     if (SceneManager.getInstance().isUniqueName(sceneName)) {
       this.uniqueSceneName = sceneName;
@@ -93,6 +137,11 @@ public class Scene {
     throw new IsNotUniqueSceneNameException(sceneName + " already used.");
   }
 
+  /**
+   * Sets show view index.
+   *
+   * @param index the index
+   */
   public void setShowViewIndex(int index) {
     if (index >= 0 && index < coldGameControllerList.size()) {
       showViewIndex = index;

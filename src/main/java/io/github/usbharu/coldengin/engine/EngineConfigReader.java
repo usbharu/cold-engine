@@ -9,6 +9,9 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * {@code ColdEngine}の設定ファイルを読み込み、適用します。
+ */
 public class EngineConfigReader extends DefaultHandler {
 
   private final List<String> attribute = new ArrayList<>();
@@ -20,35 +23,6 @@ public class EngineConfigReader extends DefaultHandler {
   private float floatNumber = 0f;
   private double doubleNumber = 0;
 
-  /**
-   * Receive notification of the beginning of the document.
-   *
-   * <p>By default, do nothing.  Application writers may override this
-   * method in a subclass to take specific actions at the beginning of a document (such as
-   * allocating the root node of a tree or creating an output file).</p>
-   *
-   * @throws SAXException Any SAX exception, possibly wrapping another exception.
-   * @see ContentHandler#startDocument
-   */
-  @Override
-  public void startDocument() throws SAXException {
-    super.startDocument();
-  }
-
-  /**
-   * Receive notification of the end of the document.
-   *
-   * <p>By default, do nothing.  Application writers may override this
-   * method in a subclass to take specific actions at the end of a document (such as finalising a
-   * tree or closing an output file).</p>
-   *
-   * @throws SAXException Any SAX exception, possibly wrapping another exception.
-   * @see ContentHandler#endDocument
-   */
-  @Override
-  public void endDocument() throws SAXException {
-    super.endDocument();
-  }
 
   /**
    * Receive notification of the start of an element.

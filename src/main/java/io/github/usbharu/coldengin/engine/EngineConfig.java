@@ -9,6 +9,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
+/**
+ * The type Engine config.
+ */
 public class EngineConfig {
 
   private static final EngineConfig singleton = new EngineConfig();
@@ -19,10 +22,19 @@ public class EngineConfig {
   private EngineConfig() {
   }
 
+  /**
+   * インスタンスを返します
+   * インスタンスを取得するときは必ずこのメソッドを使用して下さい。
+   *
+   * @return インスタンス
+   */
   public static EngineConfig getInstance() {
     return singleton;
   }
 
+  /**
+   * {@code cold-engine}のデフォルト設定を読み込みます。
+   */
   public void loadEngineConfig() {
     try {
       logger.info("Loading engine config...");

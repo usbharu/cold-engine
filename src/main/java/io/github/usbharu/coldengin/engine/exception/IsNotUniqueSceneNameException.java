@@ -2,6 +2,12 @@ package io.github.usbharu.coldengin.engine.exception;
 
 import java.security.PrivilegedActionException;
 
+/**
+ * シーンの名前が重複している場合にスローされる例外クラスです。
+ * @author usbharu
+ * @since 0.0.1
+ * @version 0.0.1
+ */
 public class IsNotUniqueSceneNameException extends IllegalArgumentException {
 
   /**
