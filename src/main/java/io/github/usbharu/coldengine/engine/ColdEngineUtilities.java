@@ -19,6 +19,9 @@ public class ColdEngineUtilities {
    * @return 数字の場合はtrue、それ以外はfalse
    * */
   public static boolean isDigit(String str) {
+    if (str == null || str.isEmpty()) {
+      return false;
+    }
     boolean isDigit = true;
     for (int i = 0; i < str.length(); i++) {
       if ((i == 1 && str.charAt(i) == '-') || str.charAt(i) == '.') {
@@ -39,6 +42,9 @@ public class ColdEngineUtilities {
    * @return {@code boolean}の場合はtrue、それ以外はfalse
    */
   public static boolean isBoolean(String str) {
+    if (str == null || str.isEmpty()) {
+      return false;
+    }
     return str.equalsIgnoreCase("false") || str.equalsIgnoreCase("true");
   }
 

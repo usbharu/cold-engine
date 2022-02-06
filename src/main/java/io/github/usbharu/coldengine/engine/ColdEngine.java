@@ -122,6 +122,9 @@ public class ColdEngine {
    * @param view 表示するコンポーネント
    */
   void setView(JComponent view) {
+    if (view == null) {
+      return;
+    }
     logger.debug("setView");
     frame.getContentPane().removeAll();
     frame.getContentPane().add(view);
@@ -154,8 +157,12 @@ public class ColdEngine {
    * @param defaultTitle デフォルトのタイトル
    */
   void setDefaultTitle(String defaultTitle) {
-    this.defaultTitle = defaultTitle;
-    logger.debug("setDefaultTitle :{}", defaultTitle);
+    if (defaultTitle == null) {
+      this.defaultTitle = "";
+    } else {
+      this.defaultTitle = defaultTitle;
+    }
+    logger.debug("setDefaultTitle :{}", this.defaultTitle);
   }
 
   /**

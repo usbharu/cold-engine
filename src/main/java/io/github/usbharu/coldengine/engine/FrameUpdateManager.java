@@ -105,8 +105,14 @@ public class FrameUpdateManager {
    * @param fps 目標fps
    */
   public void setFPS(int fps) {
-    this.fps = fps;
-    logger.debug("FPS set to {}", fps);
+    if (fps < fpsLowerLimit) {
+      this.fps = fpsLowerLimit;
+    } else if (fps > fpsUpperLimit) {
+      this.fps = fpsUpperLimit;
+    } else {
+      this.fps = fps;
+    }
+    logger.debug("FPS set to {}", this.fps);
   }
 
   /**
@@ -115,8 +121,12 @@ public class FrameUpdateManager {
    * @param fpsLowerLimit fpsの下限
    */
   void setFpsLowerLimit(int fpsLowerLimit) {
-    this.fpsLowerLimit = fpsLowerLimit;
-    logger.debug("FPS lower limit set to {}", fpsLowerLimit);
+    if (fpsLowerLimit > fpsUpperLimit) {
+      this.fpsLowerLimit = fpsUpperLimit;
+    } else {
+      this.fpsLowerLimit = fpsLowerLimit;
+    }
+    logger.debug("FPS lower limit set to {}", this.fpsLowerLimit);
   }
 
   /**
@@ -125,8 +135,12 @@ public class FrameUpdateManager {
    * @param fpsUpperLimit fpsの上限
    */
   void setFpsUpperLimit(int fpsUpperLimit) {
-    this.fpsUpperLimit = fpsUpperLimit;
-    logger.debug("FPS upper limit set to {}", fpsUpperLimit);
+    if (fpsUpperLimit < fpsLowerLimit) {
+      this.fpsUpperLimit = fpsLowerLimit;
+    } else {
+      this.fpsUpperLimit = fpsUpperLimit;
+    }
+    logger.debug("FPS upper limit set to {}", this.fpsUpperLimit);
   }
 
   private class FrameUpdateJob implements Runnable {

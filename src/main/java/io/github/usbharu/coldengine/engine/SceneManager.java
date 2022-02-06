@@ -76,6 +76,9 @@ public class SceneManager {
    * @param scene the scene
    */
   public void addScene(Scene scene) {
+    if (scene == null) {
+      return;
+    }
     sceneList.add(scene);
     logger.debug("Scene added: {}", scene.getUniqueSceneName());
   }
@@ -86,6 +89,9 @@ public class SceneManager {
    * @param scene the scene
    */
   public void removeScene(Scene scene) {
+    if (scene == null) {
+      return;
+    }
     sceneList.remove(scene);
     logger.debug("Scene removed: {}", scene.getUniqueSceneName());
   }
@@ -96,6 +102,9 @@ public class SceneManager {
    * @param uniqueSceneName the unique scene name
    */
   public void removeScene(String uniqueSceneName) {
+    if (uniqueSceneName == null || uniqueSceneName.isEmpty()) {
+      return;
+    }
     for (Scene scene : sceneList) {
       if (scene.getUniqueSceneName().equals(uniqueSceneName)) {
         removeScene(scene);
@@ -111,6 +120,9 @@ public class SceneManager {
    * @return the boolean
    */
   public boolean isUniqueName(String name) {
+    if (name == null || name.isEmpty()) {
+      return false;
+    }
     for (Scene scene : sceneList) {
       if (scene.getUniqueSceneName().equals(name)) {
         return false;
@@ -143,6 +155,9 @@ public class SceneManager {
    * @param name the name
    */
   public void loadSceneAtName(String name) {
+    if (name == null || name.isEmpty()) {
+      return;
+    }
     for (int i = 0, sceneListSize = sceneList.size(); i < sceneListSize; i++) {
       Scene scene = sceneList.get(i);
       if (scene.getUniqueSceneName().equals(name)) {
@@ -168,6 +183,9 @@ public class SceneManager {
    * @param view the view
    */
   void setView(JComponent view) {
+    if (view == null) {
+      return;
+    }
     ColdEngine.getInstance().setView(view);
     logger.debug("View set: {}", view.getClass().getName());
   }

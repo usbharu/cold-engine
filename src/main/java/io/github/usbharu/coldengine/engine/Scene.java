@@ -100,6 +100,9 @@ public class Scene {
    * @param gameController the game controller
    */
   public void add(GameController gameController) {
+    if (gameController == null || coldGameControllerList.contains(gameController)) {
+      return;
+    }
     gameController.init();
     coldGameControllerList.add(gameController);
     logger.debug("Add GameController: {}", gameController.getClass().getSimpleName());
@@ -111,6 +114,9 @@ public class Scene {
    * @param gameController the game controller
    */
   public void remove(GameController gameController) {
+    if (gameController == null || !coldGameControllerList.contains(gameController)) {
+      return;
+    }
     gameController.destroyed();
     coldGameControllerList.remove(gameController);
     logger.debug("Remove GameController: {}", gameController.getClass().getSimpleName());
@@ -131,6 +137,9 @@ public class Scene {
    * @param sceneName the scene name
    */
   public void setUniqueSceneName(String sceneName) {
+    if (sceneName == null || sceneName.isEmpty()) {
+      return;
+    }
     if (SceneManager.getInstance().isUniqueName(sceneName)) {
       this.uniqueSceneName = sceneName;
       logger.debug("setUniqueSceneName: {}", sceneName);
