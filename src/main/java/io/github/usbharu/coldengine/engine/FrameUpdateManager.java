@@ -1,5 +1,7 @@
 package io.github.usbharu.coldengine.engine;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 public class FrameUpdateManager {
 
   private static final FrameUpdateManager singleton = new FrameUpdateManager();
+  private final List<InvokeQue> invokeQues = new ArrayList<>();
   private long error = 0;
   private int fps = 10;
   private int fpsLowerLimit = 1;
@@ -21,8 +24,8 @@ public class FrameUpdateManager {
   private long oldTime;
   private long newTime;
   private long sleepTime;
-
   private Logger logger = LogManager.getLogger(FrameUpdateManager.class);
+
   private FrameUpdateManager() {
   }
 
@@ -36,15 +39,11 @@ public class FrameUpdateManager {
   }
 
   /**
-   * フレーム更新処理を開始します。
-   * 無限ループです。
+   * フレーム更新処理を開始します。 無限ループです。
    */
   public void start() {
 
     logger.info("FrameUpdate Started");
-
-    Thread thread = new Thread(new FrameUpdateJob());
-    thread.start();
 
     error = 0;
     idealSleep = (1000 << 16) / fps;
@@ -61,11 +60,8 @@ public class FrameUpdateManager {
         sleepTime = 0x20000;
       }
       oldTime = newTime;
-      try {
-        Thread.sleep(sleepTime >> 16);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
+      sleep(sleepTime >> 16);
+
       newTime = System.currentTimeMillis() << 16;
       error = newTime - oldTime - sleepTime;
     }
@@ -77,8 +73,7 @@ public class FrameUpdateManager {
   }
 
   /**
-   * 現在のfpsを返します。
-   * 取得に失敗した際は0を返します。
+   * 現在のfpsを返します。 取得に失敗した際は0を返します。
    *
    * @return the current fps
    */
@@ -143,36 +138,38 @@ public class FrameUpdateManager {
     logger.debug("FPS upper limit set to {}", this.fpsUpperLimit);
   }
 
-  private class FrameUpdateJob implements Runnable {
-
-    /**
-     * When an object implementing interface <code>Runnable</code> is used to create a thread,
-     * starting the thread causes the object's
-     * <code>run</code> method to be called in that separately executing
-     * thread.
-     * <p>
-     * The general contract of the method <code>run</code> is that it may take any action
-     * whatsoever.
-     *
-     * @see Thread#run()
-     */
-    @Override
-    public void run() {
-      logger.debug("Update Thread Start");
-      while (true) {
-        logger.trace("Update Loop");
-        try {
-          SceneManager.getInstance().update();
-          SceneManager.getInstance().lateUpdate();
-        } catch (Exception e) {
-          e.printStackTrace();
+  private void sleep(long sleepTime) {
+    long newTime = System.currentTimeMillis();
+    while (System.currentTimeMillis() - newTime <= sleepTime) {
+      logger.trace("Update Loop");
+      try {
+        SceneManager.getInstance().update();
+        for (int i = 0, invokeQuesSize = invokeQues.size(); i < invokeQuesSize; i++) {
+          InvokeQue invokeQue = invokeQues.get(i);
+          if (!invokeQue.wasRun) {
+            if (invokeQue.issueTime + invokeQue.waitTime * 1000L <= System.currentTimeMillis()) {
+              logger.debug("invoke Que run : {}", invokeQue);
+              invokeQue.run();
+              invokeQues.remove(invokeQue);
+              i--;
+              invokeQuesSize--;
+            }
+          }
         }
-        try {
-          Thread.sleep(1);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
+        SceneManager.getInstance().lateUpdate();
+        Thread.sleep(1);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
       }
     }
+
+  }
+
+  void addInvokeQue(InvokeQue invokeQue) {
+    invokeQues.add(invokeQue);
+  }
+
+  void removeInvokeQue(InvokeQue invokeQue) {
+    invokeQues.remove(invokeQue);
   }
 }
