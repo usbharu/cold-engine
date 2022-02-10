@@ -14,6 +14,8 @@ import io.github.usbharu.coldengine.engine.audio.SoundManager;
  * @since 0.0.3
  */
 public class GameUtility {
+  private GameUtility() {
+  }
 
   public static SoundManager SoundManager() {
     return SoundManager.getInstance();
