@@ -1,4 +1,4 @@
-package io.github.usbharu.coldengine.engine;
+package io.github.usbharu.coldengine.engine.audio;
 
 import java.io.IOException;
 import javax.sound.sampled.Clip;
