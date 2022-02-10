@@ -8,7 +8,6 @@ package io.github.usbharu.coldengine.engine;
  * @since 0.0.1
  */
 public class ColdEngineUtilities {
-
   private ColdEngineUtilities() {
   }
 
@@ -48,4 +47,27 @@ public class ColdEngineUtilities {
     return str.equalsIgnoreCase("false") || str.equalsIgnoreCase("true");
   }
 
+  public static void invoke(Runnable runnable, int waitTime) {
+    FrameUpdateManager.getInstance().addInvokeQue(new InvokeQue(runnable, waitTime));
+  }
+
+}
+
+class InvokeQue {
+
+  long issueTime;
+  Runnable runnable;
+  int waitTime;
+  boolean wasRun = false;
+
+  InvokeQue(Runnable runnable, int waitTime) {
+    issueTime = System.currentTimeMillis();
+    this.runnable = runnable;
+    this.waitTime = waitTime;
+  }
+
+  public void run() {
+    runnable.run();
+    wasRun = true;
+  }
 }
