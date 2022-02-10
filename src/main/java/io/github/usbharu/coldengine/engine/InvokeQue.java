@@ -1,5 +1,13 @@
 package io.github.usbharu.coldengine.engine;
 
+/**
+ * {@link io.github.usbharu.coldengine.utilities.GameUtility#invoke(Runnable, int)}で発行された{@code
+ * Invoke}のキュー
+ *
+ * @author usbharu
+ * @version 0.0.3
+ * @since 0.0.3
+ */
 public class InvokeQue {
 
   public long issueTime;

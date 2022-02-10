@@ -30,7 +30,7 @@ import org.apache.logging.log4j.Logger;
  * JOptionPane}を継承しているため、{@link JOptionPane}のメソッドを使用することができますが、推奨されません。<br>
  *
  * @author usbharu
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.1
  */
 public class Dialog extends JOptionPane {

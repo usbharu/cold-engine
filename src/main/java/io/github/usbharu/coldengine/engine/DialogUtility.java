@@ -5,6 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import javax.swing.UIManager;
 
+/**
+ * {@link Dialog}{@link InGameDialog}などで使用するユーティリティクラス
+ *
+ * @author usbharu
+ * @version 0.0.3
+ * @since 0.0.3
+ */
 public class DialogUtility {
 
   public static String getString(String key, Component c) {

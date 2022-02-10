@@ -6,6 +6,13 @@ import io.github.usbharu.coldengine.engine.InvokeQue;
 import io.github.usbharu.coldengine.engine.SceneManager;
 import io.github.usbharu.coldengine.engine.audio.SoundManager;
 
+/**
+ * ゲーム制作のためのユーティリティクラス
+ *
+ * @author usbharu
+ * @version 0.0.3
+ * @since 0.0.3
+ */
 public class GameUtility {
 
   public static SoundManager SoundManager() {
