@@ -40,10 +40,10 @@ public class EngineConfig {
    * {@code cold-engine}のデフォルト設定を読み込みます。
    */
   public void loadEngineConfig() {
-    try {
-      logger.info("Loading engine config...");
-      InputStream config = getClass().getResourceAsStream("/EngineConfig.xml");
-      logger.info("loading engine config from {}", getClass().getResource("/EngineConfig.xml").getPath());
+    logger.info("Loading engine config...");
+    try (InputStream config = getClass().getResourceAsStream("/EngineConfig.xml");) {
+      logger.info("loading engine config from {}",
+          getClass().getResource("/EngineConfig.xml").getPath());
       saxParserFactory = SAXParserFactory.newInstance();
       saxParser = saxParserFactory.newSAXParser();
       saxParser.parse(config, new EngineConfigReader());

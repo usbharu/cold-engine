@@ -15,6 +15,7 @@ public class SoundPlayer {
       throws IOException, UnsupportedAudioFileException, LineUnavailableException {
     if (oldPath == null || !oldPath.equals(path)) {
       cacheSource = new SoundSource(path);
+      oldPath = path;
       cacheSource.getClip().addLineListener(event -> {
         if (event != null && event.getType() == LineEvent.Type.STOP) {
           cacheSource.getClip().close();
