@@ -64,7 +64,7 @@ public class InGameDialog extends JOptionPane {
 
   public static void showMessageInGameDialog(Object message) {
     showMessageInGameDialog(message,
-        DialogUtility.getString("OptionPane.messageDialogTitle",
+        DialogUtilities.getString("OptionPane.messageDialogTitle",
             ColdEngine.getInstance().getFrame()));
   }
 

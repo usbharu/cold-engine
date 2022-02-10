@@ -107,7 +107,7 @@ public class Dialog extends JOptionPane {
    */
   public static String showInputDialog(Object message) {
     return showInputDialog(message,
-        DialogUtility.getString("Option.inputDialogTitle", ColdEngine.getInstance().getFrame()),
+        DialogUtilities.getString("Option.inputDialogTitle", ColdEngine.getInstance().getFrame()),
         JOptionPane.QUESTION_MESSAGE);
   }
 
@@ -131,7 +131,8 @@ public class Dialog extends JOptionPane {
    * @return ユーザー入力。{@code null}の場合はユーザーが入力を取り消したことを意味する。
    */
   public static String showInputDialog(Object message, Object initialSelectionValue) {
-    return (String) showInputDialog(message, DialogUtility.getString("OptionPane.inputDialogTitle",
+    return (String) showInputDialog(message,
+        DialogUtilities.getString("OptionPane.inputDialogTitle",
             ColdEngine.getInstance().getFrame()), JOptionPane.QUESTION_MESSAGE, null, null,
         initialSelectionValue);
   }
@@ -183,7 +184,7 @@ public class Dialog extends JOptionPane {
    * @param message the message
    */
   public static void showMessageDialog(Object message) {
-    showMessageDialog(message, DialogUtility.getString("OptionPane.messageDialogTitle",
+    showMessageDialog(message, DialogUtilities.getString("OptionPane.messageDialogTitle",
         ColdEngine.getInstance().getFrame()), JOptionPane.INFORMATION_MESSAGE);
   }
 

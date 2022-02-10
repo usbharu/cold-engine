@@ -12,7 +12,7 @@ import javax.swing.UIManager;
  * @version 0.0.3
  * @since 0.0.3
  */
-public class DialogUtility {
+public class DialogUtilities {
 
   public static String getString(String key, Component c) {
     Method method = null;

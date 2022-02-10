@@ -1,8 +1,9 @@
 package io.github.usbharu.coldengine.engine;
 
+import io.github.usbharu.coldengine.utilities.GameUtilities;
+
 /**
- * {@link io.github.usbharu.coldengine.utilities.GameUtility#invoke(Runnable, int)}で発行された{@code
- * Invoke}のキュー
+ * {@link GameUtilities#invoke(Runnable, int)}で発行された{@code Invoke}のキュー
  *
  * @author usbharu
  * @version 0.0.3
