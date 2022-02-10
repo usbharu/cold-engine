@@ -9,6 +9,13 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * 音声を保持するクラスです。
+ *
+ * @author usbharu
+ * @version 0.0.3
+ * @since 0.0.3
+ */
 public class SoundSource {
 
   private Clip clip;

@@ -24,7 +24,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * 標準のダイアログボックスを用意にポップアップできるようにします。<br>
+ * 標準のダイアログボックスを容易にポップアップできるようにします。<br>
  * <p>
  * 基本的には{@link JOptionPane}と使用方法は同じですが、親を指定することができなくなっています。<br> なお、{@link
  * JOptionPane}を継承しているため、{@link JOptionPane}のメソッドを使用することができますが、推奨されません。<br>
@@ -275,7 +275,10 @@ public class Dialog extends JOptionPane {
    * @param title   ダイアログのタイトルバーに表示する{@code String}
    * @param ok      {@code ok}ボタンが押されたときの{@code ActionListener}
    * @param cancel  {@code cancel}されたときの{@code ActionListener}
+   * @deprecated {@link InGameDialog#showMessageInGameDialog(Object, String, ActionListener,
+   * ActionListener)} に移動しました。
    */
+  @Deprecated
   public static void showMessageInGameDialog(Object message, String title, ActionListener ok,
       ActionListener cancel) {
     showOptionInGameDialog(message, title, new String[] {"ok"}, 1, null, cancel, ok);
@@ -286,12 +289,18 @@ public class Dialog extends JOptionPane {
    *
    * @param message     表示する{@code Object}
    * @param title       ダイアログのタイトルバーに表示する{@code String}
-   * @param options     ユーザーが選択可能な項目を示すオブジェクト指向の配列。{@code String}以外のオブジェクトは、{@code toString()}メソッドを使用してレンダリングされる。
-   * @param messageType 表示されるメッセージの種類。{@code ERROR_MESSAGE}、{@code INFORMATION_MESSAGE}、{@code WARNING_MESSAGE}、{@code QUESTION_MESSAGE}、または{@code PLAIN_MESSAGE}
+   * @param options     ユーザーが選択可能な項目を示すオブジェクト指向の配列。{@code String}以外のオブジェクトは、{@code
+   *                    toString()}メソッドを使用してレンダリングされる。
+   * @param messageType 表示されるメッセージの種類。{@code ERROR_MESSAGE}、{@code INFORMATION_MESSAGE}、{@code
+   *                    WARNING_MESSAGE}、{@code QUESTION_MESSAGE}、または{@code PLAIN_MESSAGE}
    * @param icon        表示する{@code Icon}イメージ
    * @param cancel      {@code cancel}されたときの{@code ActionListener}
-   * @param listeners   {@code options}で指定されたオブジェクトから生成された{@code JButton}に追加される{@code ActionListener}
+   * @param listeners   {@code options}で指定されたオブジェクトから生成された{@code JButton}に追加される{@code
+   *                    ActionListener}
+   * @deprecated {@link InGameDialog#showOptionInGameDialog(Object, String, Object[], int, Icon,
+   * ActionListener, ActionListener...)}に移動しました。
    */
+  @Deprecated
   public static void showOptionInGameDialog(Object message, String title, Object[] options,
       int messageType, Icon icon, ActionListener cancel, ActionListener... listeners) {
     logger.debug(

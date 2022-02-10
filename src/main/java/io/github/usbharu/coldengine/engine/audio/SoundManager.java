@@ -3,6 +3,13 @@ package io.github.usbharu.coldengine.engine.audio;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 音声管理用クラスです。
+ *
+ * @author usbharu
+ * @version 0.0.3
+ * @since 0.0.3
+ */
 public class SoundManager {
 
   private static final SoundManager singleton = new SoundManager();

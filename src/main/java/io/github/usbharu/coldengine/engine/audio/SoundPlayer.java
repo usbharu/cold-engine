@@ -6,6 +6,13 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * 音声再生用クラスです。 実際に使用する際は{@link SoundManager}に登録して再生することを推奨します。
+ *
+ * @author usbharu
+ * @version 0.0.3
+ * @since 0.0.3
+ */
 public class SoundPlayer {
 
   SoundSource cacheSource;
