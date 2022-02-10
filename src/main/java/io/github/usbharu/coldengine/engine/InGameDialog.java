@@ -64,7 +64,8 @@ public class InGameDialog extends JOptionPane {
 
   public static void showMessageInGameDialog(Object message) {
     showMessageInGameDialog(message,
-        getString("OptionPane.messageDialogTitle", ColdEngine.getInstance().getFrame()));
+        DialogUtility.getString("OptionPane.messageDialogTitle",
+            ColdEngine.getInstance().getFrame()));
   }
 
   /**
@@ -182,6 +183,7 @@ public class InGameDialog extends JOptionPane {
     InGameDialog.defaultDialogSize = defaultDialogSize;
   }
 
+  @Deprecated
   private static String getString(String key, Component c) {
     Method method = null;
     try {

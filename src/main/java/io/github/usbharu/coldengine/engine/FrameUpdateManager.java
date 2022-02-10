@@ -165,7 +165,7 @@ public class FrameUpdateManager {
 
   }
 
-  void addInvokeQue(InvokeQue invokeQue) {
+  public void addInvokeQue(InvokeQue invokeQue) {
     invokeQues.add(invokeQue);
   }
 
