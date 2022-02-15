@@ -17,8 +17,11 @@ public class SceneManager {
 
   private static final SceneManager singleton = new SceneManager();
   private final List<Scene> sceneList = new ArrayList<>();
-  private final Scene emptyScene = new Scene();
+  private final Scene emptyScene = new Scene() {
+  };
   private int loadedSceneIndex = -1;
+
+  private final List<Scene> nonDestroySceneList = new ArrayList<>();
 
   private final Logger logger = LogManager.getLogger(SceneManager.class);
 
@@ -47,6 +50,9 @@ public class SceneManager {
    */
   void update() {
     getScene().update();
+    for (Scene scene : nonDestroySceneList) {
+      scene.update();
+    }
   }
 
   /**
@@ -54,6 +60,9 @@ public class SceneManager {
    */
   void fixedUpdate() {
     getScene().fixedUpdate();
+    for (Scene scene : nonDestroySceneList) {
+      scene.fixedUpdate();
+    }
   }
 
   /**
@@ -61,6 +70,9 @@ public class SceneManager {
    */
   void lateUpdate() {
     getScene().lateUpdate();
+    for (Scene scene : nonDestroySceneList) {
+      scene.lateUpdate();
+    }
   }
 
   /**
@@ -75,12 +87,21 @@ public class SceneManager {
    *
    * @param scene the scene
    */
-  public void addScene(Scene scene) {
+  public Scene addScene(Scene scene) {
+    return addScene(scene, false);
+  }
+
+  public Scene addScene(Scene scene, boolean isNonDestroy) {
     if (scene == null) {
-      return;
+      return null;
     }
-    sceneList.add(scene);
+    if (isNonDestroy) {
+      nonDestroySceneList.add(scene);
+    } else {
+      sceneList.add(scene);
+    }
     logger.debug("Scene added: {}", scene.getUniqueSceneName());
+    return scene;
   }
 
   /**
@@ -93,6 +114,7 @@ public class SceneManager {
       return;
     }
     sceneList.remove(scene);
+    nonDestroySceneList.remove(scene);
     logger.debug("Scene removed: {}", scene.getUniqueSceneName());
   }
 
@@ -106,6 +128,11 @@ public class SceneManager {
       return;
     }
     for (Scene scene : sceneList) {
+      if (scene.getUniqueSceneName().equals(uniqueSceneName)) {
+        removeScene(scene);
+      }
+    }
+    for (Scene scene : nonDestroySceneList) {
       if (scene.getUniqueSceneName().equals(uniqueSceneName)) {
         removeScene(scene);
       }
@@ -136,14 +163,15 @@ public class SceneManager {
    *
    * @param index the index
    */
-  public void loadSceneAtIndex(int index) {
-    if (loadedSceneIndex < 0 || loadedSceneIndex >= sceneList.size()) {
+  public int loadSceneAtIndex(int index) {
+    if (index >= 0 && index < sceneList.size()) {
       if (loadedSceneIndex != -1) {
         destroyed();
       }
       loadedSceneIndex = index;
       logger.debug("Scene loaded: {}", sceneList.get(index).getUniqueSceneName());
       setup();
+      return loadedSceneIndex;
     } else {
       throw new ArrayIndexOutOfBoundsException(index);
     }
@@ -156,6 +184,7 @@ public class SceneManager {
    */
   public void loadSceneAtName(String name) {
     if (name == null || name.isEmpty()) {
+      logger.debug("faired Scene load: {}", name);
       return;
     }
     for (int i = 0, sceneListSize = sceneList.size(); i < sceneListSize; i++) {
@@ -167,6 +196,14 @@ public class SceneManager {
         setup();
       }
     }
+  }
+
+  public int loadNextScene() {
+    return loadSceneAtIndex(getLoadedSceneIndex() + 1);
+  }
+
+  public int getLoadedSceneIndex() {
+    return loadedSceneIndex;
   }
 
   private Scene getScene() {

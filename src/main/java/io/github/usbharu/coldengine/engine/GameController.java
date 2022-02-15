@@ -19,7 +19,7 @@ public abstract class GameController implements IGameController, GettableView {
    */
   @Override
   public void init() {
-    view = new JPanel();
+
   }
 
   /**
@@ -27,7 +27,7 @@ public abstract class GameController implements IGameController, GettableView {
    */
   @Override
   public void setup() {
-
+    view = new JPanel();
   }
 
   /**

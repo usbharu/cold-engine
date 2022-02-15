@@ -14,27 +14,32 @@ import org.apache.logging.log4j.Logger;
  * @version 0.0.2
  * @since 0.0.1
  */
-public class Scene {
+public abstract class Scene {
 
-  private final List<GameController> coldGameControllerList = new ArrayList<>();
-  private int showViewIndex = 0;
-  private String uniqueSceneName;
-
-  private final Logger logger = LogManager.getLogger(Scene.class);
+  protected final List<GameController> coldGameControllerList = new ArrayList<>();
+  protected final Logger logger = LogManager.getLogger(Scene.class);
+  protected int showViewIndex = 0;
+  protected String uniqueSceneName;
 
   /**
    * Instantiates a new Scene.
    */
   public Scene() {
     init();
+    sceneInit();
     logger.debug("Scene created.");
+    uniqueSceneName = String.valueOf(hashCode());
   }
 
-  private void init() {
+  protected void init() {
+
+  }
+
+  private void sceneInit() {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.init();
     }
-    logger.debug("Scene init.");
+    logger.debug("Scene init. {}", toString());
   }
 
   /**
@@ -44,7 +49,7 @@ public class Scene {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.setup();
     }
-    logger.debug("Scene setup.");
+    logger.debug("Scene setup. {}", toString());
 
     try {
       SceneManager.getInstance().setView(coldGameControllerList.get(showViewIndex).getView());
@@ -61,7 +66,7 @@ public class Scene {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.update();
     }
-    logger.debug("Scene update.");
+    logger.trace("Scene update.");
   }
 
   /**
@@ -71,7 +76,7 @@ public class Scene {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.fixedUpdate();
     }
-    logger.debug("Scene fixedUpdate.");
+    logger.trace("Scene fixedUpdate.");
   }
 
   /**
@@ -81,7 +86,7 @@ public class Scene {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.lateUpdate();
     }
-    logger.debug("Scene lateUpdate.");
+    logger.trace("Scene lateUpdate.");
   }
 
   /**
@@ -91,7 +96,7 @@ public class Scene {
     for (IGameController coldGameController : coldGameControllerList) {
       coldGameController.destroyed();
     }
-    logger.debug("Scene destroyed.");
+    logger.debug("Scene destroyed. :{}", toString());
   }
 
   /**
@@ -99,7 +104,7 @@ public class Scene {
    *
    * @param gameController the game controller
    */
-  public void add(GameController gameController) {
+  public final void add(GameController gameController) {
     if (gameController == null || coldGameControllerList.contains(gameController)) {
       return;
     }
@@ -161,5 +166,10 @@ public class Scene {
       ColdEngine.getInstance().repaint();
     }
     throw new IllegalArgumentException(index + "");
+  }
+
+  public Scene load() {
+    SceneManager.getInstance().loadSceneAtName(this.getUniqueSceneName());
+    return this;
   }
 }
